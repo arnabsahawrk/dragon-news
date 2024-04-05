@@ -1,16 +1,10 @@
-import { Helmet } from "react-helmet-async";
 import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
-    <>
-      <Helmet>
-        <title>Dragon News</title>
-      </Helmet>
-      <main>
-        <Outlet />
-      </main>
-    </>
+    <main className="font-poppins container mx-auto text-pretty px-4 py-4">
+      <Outlet />
+    </main>
   );
 };
 

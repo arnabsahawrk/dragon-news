@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet-async";
+import Header from "../Shared/Header";
+import LatestNews from "../../components/LatestNews/LatestNews";
 
 const Home = () => {
   return (
@@ -6,7 +8,10 @@ const Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <section></section>
+      <section className="space-y-5">
+        <Header />
+        <LatestNews />
+      </section>
     </>
   );
 };

@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "arnabw-dragon-news",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
