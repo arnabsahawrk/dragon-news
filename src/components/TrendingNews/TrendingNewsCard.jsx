@@ -14,9 +14,9 @@ const TrendingNewsCard = (props) => {
         alt={title}
       />
       <h2 className="text-lg text-[#403F3F] font-semibold">{title}</h2>
-      <ul className="flex items-center justify-between">
-        <li>{categories[category_id]?.name}</li>
-        <li className="text-[#9F9F9F] font-medium flex items-center gap-2">
+      <ul className="flex items-center justify-between text-sm font-medium">
+        <li className="text-[#403F3F]">{categories[category_id]?.name}</li>
+        <li className="text-[#9F9F9F] flex items-center gap-2">
           <SlCalender />
           {author.published_date.split(" ")[0]}
         </li>

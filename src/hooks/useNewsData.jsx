@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 const useNewsData = () => {
   const [news, setNews] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const newsData = async () => {
     try {
       const res = await axios.get("/news.json");
       const { data } = res;
       setNews(data);
-      setIsLoading(false);
     } catch (err) {
       console.log("Failed to fetch news data ", err);
     }
@@ -31,7 +29,7 @@ const useNewsData = () => {
     categoriesData();
     newsData();
   }, []);
-  return { news, categories, isLoading };
+  return { news, categories };
 };
 
 export default useNewsData;
