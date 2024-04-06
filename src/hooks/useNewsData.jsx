@@ -3,23 +3,35 @@ import { useEffect, useState } from "react";
 
 const useNewsData = () => {
   const [news, setNews] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
+  const newsData = async () => {
     try {
       const res = await axios.get("/news.json");
       const { data } = res;
       setNews(data);
       setIsLoading(false);
     } catch (err) {
-      console.log("Failed to load data ", err);
+      console.log("Failed to fetch news data ", err);
+    }
+  };
+
+  const categoriesData = async () => {
+    try {
+      const res = await axios.get("/categories.json");
+      const { data } = res;
+      setCategories(data);
+    } catch (err) {
+      console.log("Failed to fetch news data ", err);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    categoriesData();
+    newsData();
   }, []);
-  return { news, isLoading };
+  return { news, categories, isLoading };
 };
 
 export default useNewsData;
