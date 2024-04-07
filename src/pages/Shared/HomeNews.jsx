@@ -1,9 +1,11 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import useNewsData from "../../hooks/useNewsData";
 import HomeNewsCard from "./HomeNewsCard";
-const HomeNews = () => {
+const HomeNews = ({ category }) => {
   const [view, setView] = useState(2);
-  const { news } = useNewsData();
+  const [news, setNews] = useState([]);
+  const { news: allNews } = useNewsData();
 
   const handleView = () => {
     if (view >= news.length) {
@@ -11,6 +13,14 @@ const HomeNews = () => {
     }
     setView(view + 2);
   };
+
+  useEffect(() => {
+    if (category === "0") {
+      return setNews(allNews);
+    }
+    const theNews = allNews.filter((aNews) => aNews.category_id === category);
+    setNews(theNews);
+  }, [category, allNews]);
 
   return (
     <article className="col-span-12 order-1 md:order-2 md:col-span-6 lg:col-span-8">
@@ -21,7 +31,9 @@ const HomeNews = () => {
             <HomeNewsCard key={singleNews._id} news={singleNews} />
           ))}
         </div>
-        <div className="text-center">
+        <div
+          className={`text-center ${news.length > 2 ? "visible" : "invisible"}`}
+        >
           <button
             onClick={handleView}
             className="relative inline-flex items-center justify-center px-6 py-3 text-lg font-medium tracking-tighter text-white bg-gray-800 rounded-md group"
@@ -37,6 +49,10 @@ const HomeNews = () => {
       </div>
     </article>
   );
+};
+
+HomeNews.propTypes = {
+  category: PropTypes.string.isRequired,
 };
 
 export default HomeNews;

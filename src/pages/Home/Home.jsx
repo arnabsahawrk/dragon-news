@@ -5,8 +5,11 @@ import Nav from "../Shared/Nav";
 import HomeNews from "../Shared/HomeNews";
 import RightSide from "../Shared/RightSide";
 import LeftSide from "../Shared/LeftSide";
+import { useState } from "react";
 
 const Home = () => {
+  const [category, setCategory] = useState("0");
+
   return (
     <>
       <Helmet>
@@ -17,8 +20,8 @@ const Home = () => {
         <LatestNews />
         <Nav />
         <section className="grid grid-cols-12 gap-2">
-          <LeftSide />
-          <HomeNews />
+          <LeftSide setCategory={setCategory} />
+          <HomeNews category={category} />
           <RightSide />
         </section>
       </section>

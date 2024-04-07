@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         path: "newsDetails/:id",
         element: <SingleNews />,
       },
+      {
+        path: "/:name",
+        element: <Home />,
+      },
     ],
   },
 ]);
