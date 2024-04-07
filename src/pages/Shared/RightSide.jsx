@@ -4,21 +4,22 @@ import { FcGoogle } from "react-icons/fc";
 import qZone1 from "../../assets/images/qZone1.png";
 import qZone2 from "../../assets/images/qZone2.png";
 import qZone3 from "../../assets/images/qZone3.png";
+import bg from "../../assets/images/bg.png";
 
 const RightSide = () => {
   return (
     <aside className="col-span-12 order-3 md:col-span-3 lg:col-span-2 space-y-3">
       <h2 className="text-xl font-semibold text-[#403F3F]">Login With</h2>
       <ul className="px-3 font-medium space-y-2">
-        <li className="flex justify-center items-center gap-2 border-2 border-red-500 p-3 rounded">
+        <li className="flex justify-center items-center gap-2 border-2 border-red-500 p-2 rounded">
           <FcGoogle />
           Login with Google
         </li>
-        <li className="flex justify-center items-center gap-2 border-2 border-sky-500 p-3 rounded">
+        <li className="flex justify-center items-center gap-2 border-2 border-sky-500 p-2 rounded">
           <BsTwitterX />
           Login with Twitter
         </li>
-        <li className="flex justify-center items-center gap-2 border-2 border-black p-3 rounded">
+        <li className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded">
           <FaGithub />
           Login with Github
         </li>
@@ -68,6 +69,22 @@ const RightSide = () => {
           <img src={qZone3} alt="Play Ground" />
         </li>
       </ul>
+      <div
+        className="h-[500px] bg-no-repeat text-white flex flex-col items-center justify-center gap-5 text-center"
+        style={{
+          backgroundImage: `url(${bg})`,
+        }}
+      >
+        <h2 className="font-bold text-3xl">Create an Amazing Newspaper</h2>
+        <p>
+          Discover thousands of options, easy to customize layouts, one-click to
+          import demo and much more.
+        </p>
+        <button className="rounded px-5 py-2.5 overflow-hidden group bg-pink-700 relative hover:bg-gradient-to-r hover:from-pink-700 hover:to-pink-600 hover:ring-2 hover:ring-offset-2 hover:ring-pink-600 transition-all ease-out duration-300">
+          <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+          <span className="relative">Learn More</span>
+        </button>
+      </div>
     </aside>
   );
 };
