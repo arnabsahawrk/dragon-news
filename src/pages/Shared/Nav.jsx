@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import profile from "../../assets/images/user.png";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -53,12 +53,14 @@ const Nav = () => {
           src={user?.photoURL || profile}
           alt="Profile"
         />
-        <button
-          onClick={user ? logOut : null}
-          className="px-8 py-[6px] rounded-sm bg-[#403F3F] text-white text-lg font-semibold"
-        >
-          {user ? "Logout" : "Login"}
-        </button>
+        <Link to={user ? "/" : "/login"}>
+          <button
+            onClick={user ? logOut : null}
+            className="px-8 py-[6px] rounded-sm bg-[#403F3F] text-white text-lg font-semibold"
+          >
+            {user ? "Logout" : "Login"}
+          </button>
+        </Link>
       </div>
     </nav>
   );

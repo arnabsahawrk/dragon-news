@@ -5,6 +5,8 @@ import ErrorPage from "../pages/Errors/ErrorPage";
 import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 import SingleNews from "../pages/SingleNews/SingleNews";
+import Login from "../pages/Login_Register/Login";
+import Register from "../pages/Login_Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/:name",
         element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
