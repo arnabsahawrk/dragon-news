@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import useNewsData from "../../hooks/useNewsData";
 import HomeNewsCard from "./HomeNewsCard";
+import NoNews from "./NoNews";
 const HomeNews = ({ category }) => {
   const [view, setView] = useState(2);
   const [news, setNews] = useState([]);
@@ -27,9 +28,15 @@ const HomeNews = ({ category }) => {
       <h2 className="text-xl font-semibold text-[#403F3F]">Dragon Home News</h2>
       <div>
         <div className="space-y-5">
-          {news.slice(0, view).map((singleNews) => (
-            <HomeNewsCard key={singleNews._id} news={singleNews} />
-          ))}
+          {news.length ? (
+            news
+              .slice(0, view)
+              .map((singleNews) => (
+                <HomeNewsCard key={singleNews._id} news={singleNews} />
+              ))
+          ) : (
+            <NoNews />
+          )}
         </div>
         <div
           className={`text-center ${news.length > 2 ? "visible" : "invisible"}`}
