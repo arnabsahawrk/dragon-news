@@ -5,21 +5,33 @@ import qZone1 from "../../assets/images/qZone1.png";
 import qZone2 from "../../assets/images/qZone2.png";
 import qZone3 from "../../assets/images/qZone3.png";
 import bg from "../../assets/images/bg.png";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const RightSide = () => {
+  const { googleUser, twitterUser, githubUser } = useContext(AuthContext);
   return (
     <aside className="col-span-12 order-3 md:col-span-3 lg:col-span-2 space-y-3">
       <h2 className="text-xl font-semibold text-[#403F3F]">Login With</h2>
       <ul className="px-3 font-medium space-y-2">
-        <li className="flex justify-center items-center gap-2 border-2 border-red-500 p-2 rounded">
+        <li
+          onClick={googleUser}
+          className="flex justify-center items-center gap-2 border-2 border-red-500 p-2 rounded cursor-pointer"
+        >
           <FcGoogle />
           Login with Google
         </li>
-        <li className="flex justify-center items-center gap-2 border-2 border-sky-500 p-2 rounded">
+        <li
+          onClick={twitterUser}
+          className="flex justify-center items-center gap-2 border-2 border-sky-500 p-2 rounded cursor-pointer"
+        >
           <BsTwitterX />
           Login with Twitter
         </li>
-        <li className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded">
+        <li
+          onClick={githubUser}
+          className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded cursor-pointer"
+        >
           <FaGithub />
           Login with Github
         </li>
