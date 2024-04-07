@@ -15,6 +15,7 @@ const LeftSide = () => {
         ))}
       </ul>
       <section className="space-y-3">
+        <h2 className="text-lg text-[#403F3F] font-semibold">Trending News</h2>
         <TrendingNews />
       </section>
     </aside>
