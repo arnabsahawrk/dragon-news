@@ -4,10 +4,13 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   // TwitterAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import toast from "react-hot-toast";
@@ -26,6 +29,25 @@ const AuthProviders = ({ children }) => {
 
     return () => unSubscribe();
   }, []);
+
+  //Create User
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  //Update User Profile
+  const updateUserProfile = (name, url) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name || user?.displayName,
+      photoURL: url || user?.photoURL,
+    });
+  };
+
+  //Log In User
+  const logInUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   //Google Auth
   const googleAuth = new GoogleAuthProvider();
   const googleUser = () => {
@@ -85,7 +107,17 @@ const AuthProviders = ({ children }) => {
       });
   };
 
-  const AuthInfo = { user, googleUser, facebookUser, githubUser, logOut };
+  const AuthInfo = {
+    user,
+    googleUser,
+    facebookUser,
+    githubUser,
+    logOut,
+    createUser,
+    updateUserProfile,
+    setUser,
+    logInUser,
+  };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
   );

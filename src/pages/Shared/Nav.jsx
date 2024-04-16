@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import profile from "../../assets/images/user.png";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import { Tooltip } from "@material-tailwind/react";
 const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
   return (
@@ -48,11 +49,13 @@ const Nav = () => {
         </ul>
       </div>
       <div className="flex items-center gap-3">
-        <img
-          className="size-10 object-cover rounded-full"
-          src={user?.photoURL || profile}
-          alt="Profile"
-        />
+        <Tooltip content={user ? user?.displayName : "Anonymous"}>
+          <img
+            className="size-10 object-cover rounded-full"
+            src={user?.photoURL || profile}
+            alt="Profile"
+          />
+        </Tooltip>
         <Link to={user ? "/" : "/login"}>
           <button
             onClick={user ? logOut : null}

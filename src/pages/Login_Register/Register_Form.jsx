@@ -5,45 +5,46 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Register_Form = () => {
-  // const { user, setUser, createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [displayPass, setDisplayPass] = useState(false);
 
   //Register
   const handleRegister = (data) => {
-    //   const { name, photoURL, email, password } = data;
+    const { name, photoURL, email, password } = data;
 
-    //Create
-    //   createUser(email, password)
-    //     .then(() => {
-    //       toast.success("Successfully Registered.");
-    //       //Update Profile
-    //       updateUserProfile(name, photoURL).then(() => {
-    //         setUser((prevUser) => ({
-    //           ...prevUser,
-    //           displayName: name,
-    //           photoURL: photoURL,
-    //         }));
-    //       });
+    //Create User
+    createUser(email, password)
+      .then(() => {
+        toast.success("Successfully Registered.");
+        //Update Profile
+        updateUserProfile(name, photoURL).then(() => {
+          setUser((prevUser) => ({
+            ...prevUser,
+            displayName: name,
+            photoURL: photoURL,
+          }));
+        });
 
-    //       navigate("/");
-    //     })
-    //     .catch(() => {
-    //       toast.error("Registered Denied.");
-    //     });
-    console.log(data);
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Registered Denied.");
+      });
 
     reset();
   };

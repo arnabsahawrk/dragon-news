@@ -1,31 +1,34 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Login_Form = () => {
-  //   const { signInUser } = useAuth();
+  const { logInUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [displayPass, setDisplayPass] = useState(false);
 
   //Sign In
   const handleLogIn = (data) => {
-    // const { email, password } = data;
+    const { email, password } = data;
 
-    // signInUser(email, password).then(() => {
-    // toast.success("Successfully Login.");
-    //   navigate("/");
-    // }).catch(() => {
-    //     toast.error("Invalid User.");
-    // });
-    console.log(data);
+    logInUser(email, password)
+      .then(() => {
+        toast.success("Successfully Login.");
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Invalid User.");
+      });
     reset();
   };
 
