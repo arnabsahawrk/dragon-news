@@ -1,5 +1,5 @@
 import { BsTwitterX } from "react-icons/bs";
-import { FaFacebookF, FaGithub } from "react-icons/fa";
+import { FaFacebook, FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import qZone1 from "../../assets/images/qZone1.png";
 import qZone2 from "../../assets/images/qZone2.png";
@@ -9,28 +9,35 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const RightSide = () => {
-  const { googleUser, twitterUser, githubUser } = useContext(AuthContext);
+  const { googleUser, facebookUser, githubUser } = useContext(AuthContext);
   return (
     <aside className="col-span-12 order-3 md:col-span-3 lg:col-span-2 space-y-3">
       <h2 className="text-xl font-semibold text-[#403F3F]">Login With</h2>
-      <ul className="px-3 font-medium space-y-2">
+      <ul className="px-3 font-medium space-y-2 text-xs">
         <li
           onClick={googleUser}
-          className="flex justify-center items-center gap-2 border-2 border-red-500 p-2 rounded cursor-pointer"
+          className="flex justify-center items-center gap-2 border-2 border-red-500 p-2 rounded cursor-pointer text-nowrap"
         >
           <FcGoogle />
           Login with Google
         </li>
-        <li
+        {/* <li
           onClick={twitterUser}
-          className="flex justify-center items-center gap-2 border-2 border-sky-500 p-2 rounded cursor-pointer"
+          className="flex justify-center items-center gap-2 border-2 border-sky-500 p-2 rounded cursor-pointer text-nowrap"
         >
           <BsTwitterX />
           Login with Twitter
+        </li> */}
+        <li
+          onClick={facebookUser}
+          className="flex justify-center items-center gap-2 border-2 border-[#3b5998] p-2 rounded cursor-pointer text-nowrap"
+        >
+          <FaFacebook className="text-[#3b5998]" />
+          Login with Facebook
         </li>
         <li
           onClick={githubUser}
-          className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded cursor-pointer"
+          className="flex justify-center items-center gap-2 border-2 border-black p-2 rounded cursor-pointer text-nowrap"
         >
           <FaGithub />
           Login with Github
@@ -42,7 +49,7 @@ const RightSide = () => {
           <a
             href="https://www.facebook.com/arnabwrk/"
             target="_blank"
-            className="flex justify-center items-center gap-2 text-blue-500 p-3"
+            className="flex justify-center items-center gap-2 text-[#3b5998] p-3"
           >
             <FaFacebookF />
             Facebook
@@ -60,12 +67,12 @@ const RightSide = () => {
         </li>
         <li>
           <a
-            className="flex justify-center items-center gap-2 text-black p-3"
-            href="https://github.com/arnabw/"
+            className="flex justify-center items-center gap-2 text-[#0a66c2] p-3"
+            href="https://www.linkedin.com/in/arnabw"
             target="_blank"
           >
-            <FaGithub />
-            Github
+            <FaLinkedin />
+            Linkedin
           </a>
         </li>
       </ul>
